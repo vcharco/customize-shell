@@ -39,7 +39,7 @@ while getopts "s:h" opt; do
     esac
 done
 
-if [ ! -e "~/$archivo" ]; then
+if [ ! -e ~/"$archivo" ]; then
     echo "El archivo '~/$archivo' NO existe. Debes indicar un archivo válido con el parámetro -s <file>"
     exit 1
 fi
