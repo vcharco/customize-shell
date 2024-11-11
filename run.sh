@@ -39,9 +39,18 @@ while getopts "s:h" opt; do
     esac
 done
 
-if [ ! -e ~/"$archivo" ]; then
+if [ ! -e "$HOME/$archivo" ]; then
     echo "El archivo '~/$archivo' NO existe. Debes indicar un archivo válido con el parámetro -s <file>"
     exit 1
+fi
+
+# Comprobamos si existe el directorio ~/.local/bin necesario para oh-my-posh (si no, lo creamos)
+# Directorio a comprobar y crear si no existe
+binpath="$HOME/.local/bin"
+
+# Comprobamos si el directorio existe
+if [ ! -d "$binpath" ]; then
+    mkdir -p "$binpath"
 fi
 
 # Mensaje de bienvenida
@@ -49,7 +58,7 @@ echo "Iniciando Customize-shell"
 echo "Descargando archivos necesarios..."
 
 # Descarga e instalación de oh-my-posh
-curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/bin
+curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
 
 # Descarga de la fuente cascadia code
 oh-my-posh font install CascadiaCode
