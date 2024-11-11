@@ -9,7 +9,7 @@ Este prompt muestra el nombre de usuario, la dirección IP, el directorio actual
 Ejecuta el siguiente comando en tu terminal bash (asegúrate de tener instalado curl `sudo apt install curl`).
 
 ```bash
-curl -s https://github.com/vcharco/customize-shell/blob/main/run.sh | bash -s
+curl -s https://raw.githubusercontent.com/vcharco/customize-shell/refs/heads/main/run.sh | bash -s
 ```
 
 Una vez ejecutado el comando, se habrá aplicado una configuración inicial y habrá preparado el resto de elementos para que podamos terminar la personalización manualmente.
