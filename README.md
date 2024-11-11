@@ -4,6 +4,8 @@ Script que aplica una configuración de estilos moderna para la shell bash. Para
 
 Este prompt muestra el nombre de usuario, la dirección IP, el directorio actual y un icono de estado que informa sobre si el último comando se ejecutó correctamente.
 
+![screenshot](./screenshot.png)
+
 ## Instalación
 
 Ejecuta el siguiente comando en tu terminal bash (asegúrate de tener instalado curl `sudo apt install curl`).
