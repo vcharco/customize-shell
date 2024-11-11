@@ -1,5 +1,49 @@
 #!/bin/bash
 
+# Mensaje de ayuda
+
+mostrar_ayuda() {
+    echo "Uso: $0 [-s <archivo>] [-h]"
+    echo
+    echo "Opciones:"
+    echo "  -s <archivo>   Especifica un archivo (ejemplo: .bashrc, .zshrc)"
+    echo "  -h             Muestra esta ayuda y termina"
+    exit 0
+}
+
+# Inicializamos las variables
+archivo=".bashrc"
+
+# Procesamos las opciones
+while getopts "s:h" opt; do
+    case $opt in
+        s)
+            archivo="$OPTARG"
+            # Verificamos si el nombre del archivo tiene el formato correcto (empieza con . y tiene extensión)
+            if [[ ! "$archivo" =~ ^\.[a-zA-Z0-9]+rc$ ]]; then
+                echo "Error: El archivo debe tener un formato válido (ejemplo: .bashrc, .zshrc)"
+                exit 1
+            fi
+            ;;
+        h)
+            mostrar_ayuda
+            ;;
+        \?)
+            echo "Opción inválida: -$OPTARG" >&2
+            mostrar_ayuda
+            ;;
+        :)
+            echo "La opción -$OPTARG requiere un argumento." >&2
+            mostrar_ayuda
+            ;;
+    esac
+done
+
+if [ ! -e "~/$archivo" ]; then
+    echo "El archivo '~/$archivo' NO existe. Debes indicar un archivo válido con el parámetro -s <file>"
+    exit 1
+fi
+
 # Mensaje de bienvenida
 echo "Iniciando Customize-shell"
 echo "Descargando archivos necesarios..."
@@ -13,10 +57,10 @@ oh-my-posh font install CascadiaCode
 echo "Archivos descargados. Configurando shell..."
 
 # Establecemos la configuración
-echo 'eval "$(oh-my-posh init bash --config ~/.customize-shell.theme.json)"' >> ~/.bashrc
+echo 'eval "$(oh-my-posh init bash --config ~/.customize-shell.theme.json)"' >> ~/$archivo
 
 # Aplicamos la configuración
-source  ~/.bashrc
+source  ~/$archivo
 
 # Grabamos la configuración de oh-my-posh
 cat <<EOF > ~/.customize-shell.theme.json
