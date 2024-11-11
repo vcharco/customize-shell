@@ -12,6 +12,12 @@ Ejecuta el siguiente comando en tu terminal bash (asegúrate de tener instalado 
 curl -s https://raw.githubusercontent.com/vcharco/customize-shell/refs/heads/main/run.sh | bash -s
 ```
 
+En caso de que tu terminal no sea bash (no existirá el .bashrc) y en su lugar es otra como zsh (el archivo será .zshrc), deberás añadir al final del comando la secuencia ` -- -s .zshrc` (o el archivo que corresponda según tu shell).
+
+```bash
+curl -s https://raw.githubusercontent.com/vcharco/customize-shell/refs/heads/main/run.sh | bash -s -- -s .zshrc
+```
+
 Una vez ejecutado el comando, se habrá aplicado una configuración inicial y habrá preparado el resto de elementos para que podamos terminar la personalización manualmente.
 
 Los siguientes pasos que debemos realizar para terminar la configuración son los siguientes:
